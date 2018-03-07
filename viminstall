@@ -120,7 +120,9 @@ fi
 if [ ! -e ~/.eslintrc ]; then
     ln -s ~/.hc-nvim/needed_files/.eslintrc ~/
 else 
-    echo "\n -- .eslint file does exist. Modify your file.\n"
+    echo "
+    -- .eslint file does exist. Modify your file.
+    "
 fi 
 
 echo "
