@@ -86,8 +86,9 @@ fi
 
 if [ -d ~/.config/nvim ]; then
     mv ~/.config/nvim ~/.config/nvim_old
+    mkdir ~/.config/nvim
 else
-    mkdir -p ~/.config/nvim
+    mkdir ~/.config/nvim
 fi
 
 echo "
