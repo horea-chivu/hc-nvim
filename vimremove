@@ -1,0 +1,45 @@
+#!/bin/bash
+
+while true; do
+    read -p "Do you want to remove the .nvim.user directory(contain all your custom configurations, plugins, plugins settings)?[Y/n]: " yn
+    case $yn in
+
+        [Yy]* )
+                echo "
+                -- Removing ~/.nvim.user directory
+                "
+                if [ -d ~/.nvim.user ]; then
+                    rm -fR ~/.nvim.user
+                fi
+                break
+                ;;
+        [Nn]* )
+                echo "
+                -- The .nvim.user directory will not be removed(you custom configuration files will be preserved)
+                "
+                break
+                ;;
+        * )
+                echo "
+                Please answer Y(Yes) or n(no).
+                "
+                ;;
+    esac
+done
+
+
+echo "
+-- Removing the files 
+"
+rm ~/.config/nvim/init.vim
+rm ~/.config/nvim/functions.vim
+rm ~/.config/nvim/plugins.vim
+rm ~/.config/nvim/plugins_settings.vim
+rm ~/.config/nvim/UltiSnips
+rm ~/.config/nvim/syntax
+rm ~/.config/nvim/colors
+
+echo "
+-- Removing the directories
+"
+rm -Rf ~/.hc-nvim

@@ -1,0 +1,134 @@
+#!/bin/bash
+
+# Bash script for setting up configurations and plugins for Vim.
+
+echo "
+ ██░ ██  ▄████▄      ██▒   █▓ ██▓ ███▄ ▄███▓
+ ██░ ██▒▒██▀ ▀█     ▓██░   █▒▓██▒▓██▒▀█▀ ██▒
+▒██▀▀██░▒▓█    ▄     ▓██  █▒░▒██▒▓██    ▓██░
+░▓█ ░██ ▒▓▓▄ ▄██▒     ▒██ █░░░██░▒██    ▒██ 
+░▓█▒░██▓▒ ▓███▀ ░      ▒▀█░  ░██░▒██▒   ░██▒
+ ▒ ░░▒░▒░ ░▒ ▒  ░      ░ ▐░  ░▓  ░ ▒░   ░  ░
+ ▒ ░▒░ ░  ░  ▒         ░ ░░   ▒ ░░  ░      ░
+ ░  ░░ ░░                ░░   ▒ ░░      ░   
+ ░  ░  ░░ ░               ░   ░         ░   
+        ░                ░                  
+"
+
+echo "
+-- Cloning the hc-nvim repository to ~/.hc-nvim
+"
+git clone https://github.com/horea-chivu/hc-nvim ~/.hc-nvim
+
+# If is Mac OS
+if [ "$(uname)" == "Darwin" ]; then
+    # Do something under Mac OS X platform
+
+    echo "
+
+    #### IMPORTANT ####
+
+    You will need to run every command from ~/.hc-nvim/mac-dependencies
+    before you continue!!
+
+    NOTE: Check and install dependencies under your own judgement!
+
+    "
+
+    while true; do
+        read -p "Do you installed the dependencies?[Y/n]: " yn
+        case $yn in
+            [Yy]* ) break;;
+            [Nn]* ) echo "Install the dependencies then run 'bash ~/.hc-nvim/viminstall'!"; exit;;
+            * ) echo "Please answer Y(Yes) or n(no).";;
+        esac
+    done
+
+# If is Linux
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Do something under GNU/Linux platform
+
+    echo "
+
+    #### IMPORTANT ####
+
+    You will need to run every command from ~/.hc-nvim/your_distro-dependencies
+    before you continue!!
+
+    NOTE: Check and install dependencies under your own judgement!
+
+    "
+
+    while true; do
+        read -p "Do you installed the dependencies?[Y/n]: " yn
+        case $yn in
+            [Yy]* ) break;;
+            [Nn]* ) echo "Install the dependencies then run 'bash ~/.hc-nvim/viminstall'!"; exit;;
+            * ) echo "Please answer Y(Yes) or n(no).";;
+        esac
+    done
+
+# If Windows 32bit
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # Do something under 32 bits Windows NT platform
+
+    echo "Sorry, can't do anything for you!"
+    exit 1
+
+# If Windows 64bit
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    # Do something under 64 bits Windows NT platform
+
+    echo "Sorry, can't do anything for you!"
+    exit 1
+fi
+
+if [ -d ~/.config/nvim ]; then
+    mv ~/.config/nvim ~/.config/nvim_old
+else
+    mkdir -p ~/.config/nvim
+fi
+
+echo "
+-- Creating symbolic links for the configuration files
+"
+ln -s ~/.hc-nvim/colors ~/.config/nvim/
+ln -s ~/.hc-nvim/syntax ~/.config/nvim/
+ln -s ~/.hc-nvim/configuration_files/init.vim ~/.config/nvim/
+ln -s ~/.hc-nvim/configuration_files/plugins.vim ~/.config/nvim/
+ln -s ~/.hc-nvim/configuration_files/plugins_settings.vim ~/.config/nvim/
+ln -s ~/.hc-nvim/configuration_files/functions.vim ~/.config/nvim/
+
+echo "
+-- Creating custom configuration files if not exist
+"
+# If there are NOT any user settings
+if [ ! -d ~/.nvim.user ]; then
+    mkdir ~/.nvim.user
+
+    cp ~/.hc-nvim/configuration_files/before.vim ~/.nvim.user/
+    cp ~/.hc-nvim/configuration_files/after.vim ~/.nvim.user/
+    cp ~/.hc-nvim/configuration_files/settings.vim ~/.nvim.user/
+    cp ~/.hc-nvim/configuration_files/u_plugins.vim ~/.nvim.user/
+    cp ~/.hc-nvim/configuration_files/u_plugins_settings.vim ~/.nvim.user/
+
+    mkdir ~/.nvim.user/UltiSnips
+    ln -s ~/.nvim.user/UltiSnips ~/.config/nvim/
+fi
+
+if [ ! -e ~/.eslintrc ]; then
+    ln -s ~/.hc-nvim/needed_files/.eslintrc ~/
+else 
+    echo "\n -- .eslint file does exist. Modify your file.\n"
+fi 
+
+echo "
+-- Install Plug Vim
+"
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+echo "
+-- Install the plugins
+"
+nvim +PlugInstall +qall

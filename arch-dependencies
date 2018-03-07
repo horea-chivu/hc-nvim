@@ -1,0 +1,60 @@
+#!/bin/bash
+
+echo "
+	NOTE: Is recomanded to run the commands step by step!
+"
+
+while true; do
+    read -p "Are you a sudoer?[Y/n]: " yn
+    case $yn in
+        [Yy]* ) echo "Ok. Let's proceed to password."; break;;
+        [Nn]* ) echo "It's not possible to run this script. Try running commands from this script on your own."; exit;;
+        * ) echo "Please answer Y(Yes) or n(no).";;
+    esac
+done
+
+# Dependencies
+sudo pacman -Sy base-devel cmake curl ctags xclip git
+sudo pacman -S python python-pip python2 python2-pip
+sudo pacman -S go
+sudo pacman -S mono
+curl https://sh.rustup.rs -sSf | sh
+
+
+# Install vim and gvim
+sudo pacman -S gvim
+
+# Install the monaco font
+yaourt -S ttf-monaco
+
+sudo pacman -S nodejs npm
+
+
+
+#### Linters ####
+
+# Javascript
+sudo npm install -g babel-eslint
+
+# Python
+sudo pacman -S python-pylint python2-pylint
+
+
+
+#### Code formatters ####
+
+# JS/HTML/CSS/JSON
+sudo npm install -g js-beautify
+
+# Typescript
+sudo npm install -g typescript typescript-formatter
+
+# C/C++/Objective C
+sudo pacman -S clang
+
+source ~/.bash_profile
+source ~/.profile
+
+
+# After installation, please link ~/.vim  and ~/.vim/.vimrc in /root directory
+# Then run in "~/.vim/plugged/YouCompleteMe" directory "./install.py --all --system-libclangpwd"
