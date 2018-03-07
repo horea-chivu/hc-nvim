@@ -28,7 +28,7 @@ endif
 let mapleader=","
 
 " Source a sepparate .vim file that contans custom functions
-source ~/.nvim/functions.vim
+source ~/.config/nvim/functions.vim
 
 " Environment
 
