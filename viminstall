@@ -19,7 +19,6 @@ echo "
 -- Cloning the hc-nvim repository to ~/.hc-nvim
 "
 git clone https://github.com/horea-chivu/hc-nvim ~/.hc-nvim
-git clone --depth=1 https://github.com/rust-lang/rust.git ~/.hc-nvim/.rust_source
 
 # If is Mac OS
 if [ "$(uname)" == "Darwin" ]; then
@@ -125,6 +124,11 @@ else
     -- .eslint file does exist. Modify your file.
     "
 fi 
+
+echo "
+-- Geting Rust's source code in ~/.rust_source_code
+"
+git clone --depth=1 https://github.com/rust-lang/rust.git ~/.rust_source_code
 
 echo "
 -- Install Plug Vim

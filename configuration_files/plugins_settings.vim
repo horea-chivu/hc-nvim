@@ -117,7 +117,7 @@ if !exists('g:hc_disable_plugin_deoplete')
 
     " deoplete-rust
     let g:deoplete#sources#rust#racer_binary='/home/eclecticarth/.cargo/bin/racer'
-    let g:deoplete#sources#rust#rust_source_path='~/.hc-nvim/.rust_source/src'
+    let g:deoplete#sources#rust#rust_source_path='~/rust_source_code/src'
 
     " phpcd
     let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
