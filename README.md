@@ -1,4 +1,4 @@
-# hc-vim
+# NeoVim configuration hc-nvim
 
 ## Description
 
@@ -13,7 +13,7 @@ First, install vim, curl and git.
 
 Then execute in terminal: `bash <(curl -s https://raw.githubusercontent.com/horea-chivu/hc-nvim/master/install)`
 
-Then you will be promted to execute *ubuntu-dependencies* file in order to install required dependencies for Vim to work correctly. If you want to do it later, manually, run the followig command: `bash ~/.hc-vim/ubuntu-dependencies`.
+Then you will be promted to execute *ubuntu-dependencies* file in order to install required dependencies for Vim to work correctly. If you want to do it later, manually, run the followig command: `bash ~/.hc-nvim/ubuntu-dependencies`.
 
 ## On Mac OS
 First, install vim, curl and git.
@@ -22,13 +22,13 @@ First, install vim, curl and git.
 Then execute in terminal: `bash <(curl -s https://raw.githubusercontent.com/horea-chivu/hc-nvim/master/install)`
 
 You will be asked if you installed the dependencies. If no, please inter **n**, install
-what is listed in ~/.hc-vim/mac-dependencies file and the run:
+what is listed in ~/.hc-nvim/mac-dependencies file and the run:
 * `bash ~/.hc-nvim/install`
 and then when you are asked again the same question, press **y** and **Enter**.
 
 # How to update?
 
-Just execute in your terminal `bash ~/.hc-vim/update`, and the script will take care of the updates for you(it might take a while becouse of download and compilation of YouCompleteMe). You will probably be promted to run *ubuntu-dependencies* again. Please, do it.
+Just execute in your terminal `bash ~/.hc-nvim/update`, and the script will take care of the updates for you(it might take a while becouse of download and compilation of YouCompleteMe). You will probably be promted to run *ubuntu-dependencies* again. Please, do it.
 
 # Settings and customizations
 6 files will be created where you can put your personal vim configurations:
