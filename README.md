@@ -2,81 +2,50 @@
 
 ## Description
 
-hc-vim is a suite of configurations and plugins fully compatible with vim/vim-gtk/neovim/macvim, with recomanded packages to be installed on Ubuntu based OS(with apt-get) and Mac OS(with brew). Also, the configuration is fully customizable with files in `~/.vim.user` directory(you can version this directory).
-In `~/.vim.user` you can disable plugins, add your own, add settings for you plugins, add vimscript configurations to run *before* and *after* the main configurations(in this way you can overwrite any settings) and add you custom snippets compatible with UltiSnips(instead of those included with vim-snippets).
 
 # How to install?
 
 ## On Ubuntu Based
 First, install vim, curl and git.
 * `sudo apt-get update`
-* `sudo apt-get -y install vim vim-gtk git curl`
+* `sudo apt-get -y install git curl`
 
-Then execute in terminal: `bash <(curl -s https://raw.githubusercontent.com/horea-chivu/hc-vim/master/viminstall)`
+Then execute in terminal: `bash <(curl -s https://raw.githubusercontent.com/horea-chivu/hc-nvim/master/install)`
 
 Then you will be promted to execute *ubuntu-dependencies* file in order to install required dependencies for Vim to work correctly. If you want to do it later, manually, run the followig command: `bash ~/.hc-vim/ubuntu-dependencies`.
 
 ## On Mac OS
 First, install vim, curl and git.
-* `brew install vim macvim git curl`
+* `brew install macvim git curl`
 
-Then execute in terminal: `bash <(curl -s https://raw.githubusercontent.com/horea-chivu/hc-vim/master/viminstall)`
+Then execute in terminal: `bash <(curl -s https://raw.githubusercontent.com/horea-chivu/hc-nvim/master/install)`
 
 You will be asked if you installed the dependencies. If no, please inter **n**, install
 what is listed in ~/.hc-vim/mac-dependencies file and the run:
-* `bash ~/.hc-vim/vimupdate`
+* `bash ~/.hc-nvim/install`
 and then when you are asked again the same question, press **y** and **Enter**.
-
-
-# Integration with Neovim
-
-After the normal installation is done, you may install Neovim, and link it with 
-this configuratins and plugins.
-
-## On Ubuntu Based
-To install, pick **just one** of the following repos and run in the terminal(the first one is recomended):
-* `sudo add-apt-repository ppa:neovim-ppa/stable`
-* `sudo add-apt-repository ppa:neovim-ppa/unstable`
-
-Then:
-* `sudo apt-get update`
-* `sudo apt-get install neovim`
-* `mkdir ~/.config`
-* `ln -s ~/.vim ~/.config/nvim`
-* `ln -s ~/.hc-vim/configuration_files/.vimrc ~/.config/nvim/init.vim`
-* `sudo pip3 install setuptools`
-* `sudo pip3 install --upgrade neovim`
-
-## On Mac OS
-* `brew install neovim`
-Then:
-* `mkdir ~/.config`
-* `ln -s ~/.vim ~/.config/nvim`
-* `ln -s ~/.hc-vim/configuration_files/.vimrc ~/.config/nvim/init.vim`
-
-Now Neovim is fully functional with this configurations and plugins!
 
 # How to update?
 
-Just execute in your terminal `bash ~/.hc-vim/vimupdate`, and the script will take care of the updates for you(it might take a while becouse of download and compilation of YouCompleteMe). You will probably be promted to run *ubuntu-dependencies* again. Please, do it.
+Just execute in your terminal `bash ~/.hc-vim/update`, and the script will take care of the updates for you(it might take a while becouse of download and compilation of YouCompleteMe). You will probably be promted to run *ubuntu-dependencies* again. Please, do it.
 
 # Settings and customizations
 6 files will be created where you can put your personal vim configurations:
-    * `~/.vim.user/.vim.user.settings` - some predifined settings that you can enable or disable(ex: you can disable plugins)
-    * `~/.vim.user/.vim.user.before` - you can put here all your settings that will be sourced *before* anything else
-    * `~/.vim.user/.vim.user.after` - you can put here all your settings that will be sourced *after* anything else
-    * `~/.vim.user/.vim.user.plugins` - you can add plugins
-    * `~/.vim.user/.vim.user.plugins_settings` - you can add settings for those plugins
-    * `~/.vim.user/UltiSnips` - you can add *programming_language*.snippets files where you can create UltiSnips snippets
+    * `~/.nvim.user/settings.vim` - some predifined settings that you can enable or disable(ex: you can disable plugins)
+    * `~/.nvim.user/before.vim` - you can put here all your settings that will be sourced *before* anything else
+    * `~/.nvim.user/.vim.user.after` - you can put here all your settings that will be sourced *after* anything else
+    * `~/.nvim.user/u_plugins.vim` - you can add plugins
+    * `~/.nvim.user/u_plugins_settings.vim` - you can add settings for those plugins
+    * `~/.nvim.user/UltiSnips` - you can add *programming_language*.snippets files where you can create UltiSnips snippets
 
 # Backups
 
-Your old configurations, represented by *~/.vim* directory and *~/.vimrc* file will be moved in **~/.vim_backup** directory.
+Your old configurations, represented by *~/.config/nvim_old* directory will be moved in **~/.config/nvim_old** directory.
 
 # Features
 
 1. Gorgeous font(Monaco) and customized colorschemes(github for day, codeschool for night)
-2. Modern .vimrc configuration
+2. Modern init.vim configuration, with no redundant configurations
 3. **Plug Vim** - a very efficient plugin manager with a lot of features.
 4. File explorers:
     * **scrooloose/nerdtree** - allows you to explore your filesystem and to open files and directories
@@ -96,9 +65,7 @@ Your old configurations, represented by *~/.vim* directory and *~/.vimrc* file w
     * **arnaud-lb/vim-php-namespace** - for inserting "use" statements automatically
     * **craigemery/vim-autotag** - generate ctags when you save a file in a project with ctags generated
 5. Code autocomplition and snippets:
-    * **Valloric/YouCompleteMe** - YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
-    * **shawncplus/phpcomplete.vim** - improved PHP omni-completion. Based on the default phpcomplete.vim. Cohabits well with YouCompleteMe.
-    * **dsawardekar/wordpress.vim** - provide auto-completions for wordpress PHP files
+    * **Shougo/deoplete.nvim** -  It provides an extensible and asynchronous completion framework for neovim/Vim8.
     * **SirVer/ultisnips** - UltiSnips is the ultimate solution for snippets in Vim. It has tons of features and is very fast
     * **honza/vim-snippets** - contains snippets files for various programming languages
     * **tpope/vim-surround** - surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more
