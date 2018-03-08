@@ -2,6 +2,7 @@
 
 ## Description
 
+Autoinstaller for nvim configuration that provide lots of features for many situations in programming.
 
 # How to install?
 
