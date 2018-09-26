@@ -116,8 +116,8 @@ if !exists('g:hc_disable_plugin_deoplete')
     let g:deoplete#enable_at_startup = 1
 
     " deoplete-rust
-    let g:deoplete#sources#rust#racer_binary='/home/eclecticarth/.cargo/bin/racer'
-    let g:deoplete#sources#rust#rust_source_path='~/rust_source_code/src'
+    let g:deoplete#sources#rust#racer_binary='/home/horea/.cargo/bin/racer'
+    let g:deoplete#sources#rust#rust_source_path='/home/horea/.rust_source_code/src'
 
     " phpcd
     let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})

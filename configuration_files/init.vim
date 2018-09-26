@@ -90,8 +90,7 @@ set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
-set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-set splitright                  " Puts new vsplit windows to the right of the current
+set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J) set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
@@ -164,11 +163,11 @@ tnoremap <Esc> <C-\><C-n>
 
 nma <Leader>f :tag<space>
 
-" Source a sepparate .vim file that contans the list of plugin
-so ~/.config/nvim/plugins.vim
-
 " Source a sepparate .vim file that contans the plugins settings
 so ~/.config/nvim/plugins_settings.vim
+
+" Source a sepparate .vim file that contans the list of plugin
+so ~/.config/nvim/plugins.vim
 
 " Use after config
 if filereadable(expand("~/.nvim.user/after.vim"))
